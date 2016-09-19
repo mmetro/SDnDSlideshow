@@ -15,6 +15,28 @@ namespace SDnDSlideshow
         public Form1()
         {
             InitializeComponent();
+            foreach (var screen in Screen.AllScreens)
+            {
+                ((ComboBox)this.Controls["screenComboBox1"]).Items.Add(screen.DeviceName);
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            int selectedIndex = ((ComboBox)this.Controls["screenComboBox1"]).SelectedIndex;
+            if (selectedIndex < 0 || selectedIndex > Screen.AllScreens.Length)
+            {
+                MessageBox.Show("Please select a valid screen from the dropdown.", "Invalid Screen");
+                return;
+            }
+            Screen screen = Screen.AllScreens[selectedIndex];
+            MessageBox.Show("Name: " + screen.DeviceName + "\n Working area: " + screen.WorkingArea.ToString(), "Selected Screen Info");
+
         }
     }
 }
