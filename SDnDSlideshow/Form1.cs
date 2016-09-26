@@ -17,7 +17,7 @@ namespace SDnDSlideshow
             InitializeComponent();
             foreach (var screen in Screen.AllScreens)
             {
-                ((ComboBox)this.Controls["screenComboBox1"]).Items.Add(screen.DeviceName);
+                screenComboBox1.Items.Add(screen.DeviceName);
             }
         }
 
@@ -28,7 +28,7 @@ namespace SDnDSlideshow
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            int selectedIndex = ((ComboBox)this.Controls["screenComboBox1"]).SelectedIndex;
+            int selectedIndex = screenComboBox1.SelectedIndex;
             if (selectedIndex < 0 || selectedIndex > Screen.AllScreens.Length)
             {
                 MessageBox.Show("Please select a valid screen from the dropdown.", "Invalid Screen");
