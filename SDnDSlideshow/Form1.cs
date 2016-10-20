@@ -38,5 +38,20 @@ namespace SDnDSlideshow
             MessageBox.Show("Name: " + screen.DeviceName + "\n Working area: " + screen.WorkingArea.ToString(), "Selected Screen Info");
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                slideShowDirTextBox.Text = folderBrowserDialog1.SelectedPath.ToString();
+            }
+        }
     }
 }
