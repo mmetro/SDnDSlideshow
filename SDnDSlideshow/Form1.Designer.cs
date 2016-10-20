@@ -109,6 +109,7 @@
             this.startStopButton.TabIndex = 4;
             this.startStopButton.Text = "Start Slideshow";
             this.startStopButton.UseVisualStyleBackColor = true;
+            this.startStopButton.Click += new System.EventHandler(this.startStopButton_Click);
             // 
             // Form1
             // 
