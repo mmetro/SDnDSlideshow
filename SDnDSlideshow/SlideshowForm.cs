@@ -36,6 +36,7 @@ namespace SDnDSlideshow
                 if (_image != null)
                 {
                     changeSize(_image.Size);
+                    pictureBox1.Image = _image;
                 }
             }
         }
@@ -52,6 +53,7 @@ namespace SDnDSlideshow
             else
             {
                 this.ClientSize = s;
+                pictureBox1.Size = _image.Size;
             }
         }
 
@@ -61,8 +63,13 @@ namespace SDnDSlideshow
             {
                 return;
             }
-            Graphics g = e.Graphics;
-            g.DrawImage(_image, 0, 0);
+            //Graphics g = e.Graphics;
+            //g.DrawImage(_image, 0, 0);
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            //empty implementation
         }
 
         private Image _image;
