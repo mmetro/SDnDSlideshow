@@ -30,7 +30,7 @@ namespace SDnDSlideshow
                 _image.Dispose();
             }
             String extension = Path.GetExtension(_imagePath);
-            if (extension.Equals(".jpg") || extension.Equals(".bmp") || extension.Equals(".png"))
+            if (extension.Equals(".jpg") || extension.Equals(".bmp") || extension.Equals(".png") || extension.Equals(".gif"))
             {
                 _image = Image.FromFile(_imagePath);
                 if (_image != null)
@@ -69,7 +69,8 @@ namespace SDnDSlideshow
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            //empty implementation
+            //empty implementationwe don't want to paint the background
+            // 
         }
 
         private Image _image;
