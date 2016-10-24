@@ -25,18 +25,20 @@ namespace SDnDSlideshow
             {
                 return;
             }
-            if (_image != null)
-            {
-                _image.Dispose();
-            }
             String extension = Path.GetExtension(_imagePath);
             if (extension.Equals(".jpg") || extension.Equals(".bmp") || extension.Equals(".png") || extension.Equals(".gif"))
             {
+                Image i2 = _image;
                 _image = Image.FromFile(_imagePath);
                 if (_image != null)
                 {
                     changeSize(_image.Size);
                     pictureBox1.Image = _image;
+                    
+                    if (i2 != null)
+                    {
+                        i2.Dispose();
+                    }
                 }
             }
         }
@@ -52,8 +54,10 @@ namespace SDnDSlideshow
             }
             else
             {
-                this.ClientSize = s;
-                pictureBox1.Size = _image.Size;
+                //this.ClientSize = s;
+                //pictureBox1.Size = _image.Size;
+
+                //pictureBox1.Size = this.ClientSize;
             }
         }
 
@@ -75,6 +79,11 @@ namespace SDnDSlideshow
 
         private Image _image;
         private String _imagePath;
+
+        private void SlideshowForm_SizeChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Size = this.ClientSize;
+        }
     }
 
 }

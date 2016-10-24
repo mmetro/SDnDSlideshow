@@ -36,7 +36,8 @@
             // 
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.Size = this.ClientSize;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -48,6 +49,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Name = "SlideshowForm";
             this.Text = "SlideshowForm";
+            this.SizeChanged += new System.EventHandler(this.SlideshowForm_SizeChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.SlideshowForm_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
