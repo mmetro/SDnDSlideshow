@@ -32,9 +32,9 @@
             this.screenComboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.button2 = new System.Windows.Forms.Button();
             this.slideShowDirTextBox = new System.Windows.Forms.TextBox();
+            this.browseButton = new System.Windows.Forms.Button();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.startStopButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,23 +74,13 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.slideShowDirTextBox);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.browseButton);
             this.groupBox2.Location = new System.Drawing.Point(12, 78);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(260, 54);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Choose Directory";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(7, 20);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Browse";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // slideShowDirTextBox
             // 
@@ -100,6 +90,16 @@
             this.slideShowDirTextBox.Size = new System.Drawing.Size(166, 20);
             this.slideShowDirTextBox.TabIndex = 1;
             this.slideShowDirTextBox.Text = "Choose a Directory";
+            // 
+            // browseButton
+            // 
+            this.browseButton.Location = new System.Drawing.Point(7, 20);
+            this.browseButton.Name = "browseButton";
+            this.browseButton.Size = new System.Drawing.Size(75, 23);
+            this.browseButton.TabIndex = 0;
+            this.browseButton.Text = "Browse";
+            this.browseButton.UseVisualStyleBackColor = true;
+            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
             // 
             // startStopButton
             // 
@@ -135,7 +135,7 @@
         private System.Windows.Forms.ComboBox screenComboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.TextBox slideShowDirTextBox;
         private System.Windows.Forms.Button startStopButton;

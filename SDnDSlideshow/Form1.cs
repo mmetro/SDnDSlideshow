@@ -22,7 +22,8 @@ namespace SDnDSlideshow
                 screenComboBox1.Items.Add(screen.DeviceName);
             }
             _slideShowForms = new List<SlideshowForm>();
-            _files = new List<String>();
+            _slideshows = new List<Slideshow>();
+            _slideshowMap = new Dictionary<SlideshowForm, Slideshow>();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace SDnDSlideshow
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void browseButton_Click(object sender, EventArgs e)
         {
             DialogResult result = folderBrowserDialog1.ShowDialog();
 
@@ -56,7 +57,6 @@ namespace SDnDSlideshow
             {
                 string path = folderBrowserDialog1.SelectedPath.ToString();
                 slideShowDirTextBox.Text = path;
-                _files = new List<String>( Directory.GetFiles(path));
             }
         }
 
@@ -64,8 +64,8 @@ namespace SDnDSlideshow
         {
             foreach (SlideshowForm sf in _slideShowForms)
             {
-                sf.changeImage(_files[currFile]);
-                currFile = (currFile + 1) % _files.Count;
+                sf.changeImage(_slideshowMap[sf].getImage(currFile));
+                currFile++;
             }
         }
 
@@ -74,6 +74,10 @@ namespace SDnDSlideshow
             SlideshowForm slideForm = new SlideshowForm();
             slideForm.Show();
             _slideShowForms.Add(slideForm);
+            Slideshow ss = new Slideshow();
+            ss.addDirectory(folderBrowserDialog1.SelectedPath.ToString());
+            _slideshows.Add(ss);
+            _slideshowMap[slideForm] = ss;
 
             // update the image every 1000 MS
             System.Timers.Timer timer = new System.Timers.Timer(1000);
@@ -83,7 +87,8 @@ namespace SDnDSlideshow
 
 
         private int currFile;
-        private List<String> _files;
+        private List<Slideshow> _slideshows;
         private List<SlideshowForm> _slideShowForms;
+        private Dictionary<SlideshowForm, Slideshow> _slideshowMap;
     }
 }

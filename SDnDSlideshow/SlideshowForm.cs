@@ -77,8 +77,14 @@ namespace SDnDSlideshow
             // 
         }
 
+        public void setSlideshow(ref Slideshow ss)
+        {
+            _slideshow = ss;
+        }
+
         private Image _image;
         private String _imagePath;
+        private Slideshow _slideshow;
 
         private void SlideshowForm_SizeChanged(object sender, EventArgs e)
         {

@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Slideshow.cs" />
     <Compile Include="SlideshowForm.cs">
       <SubType>Form</SubType>
     </Compile>
