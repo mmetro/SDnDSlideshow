@@ -24,6 +24,11 @@ namespace SDnDSlideshow
             _slideShowForms = new List<SlideshowForm>();
             _slideshows = new List<Slideshow>();
             _slideshowMap = new Dictionary<SlideshowForm, Slideshow>();
+
+            // update the image every 1000 MS
+            System.Timers.Timer timer = new System.Timers.Timer(1000);
+            timer.Elapsed += HandleTimer;
+            timer.Start();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,11 +83,6 @@ namespace SDnDSlideshow
             ss.addDirectory(folderBrowserDialog1.SelectedPath.ToString());
             _slideshows.Add(ss);
             _slideshowMap[slideForm] = ss;
-
-            // update the image every 1000 MS
-            System.Timers.Timer timer = new System.Timers.Timer(1000);
-            timer.Elapsed += HandleTimer;
-            timer.Start();
         }
 
 
