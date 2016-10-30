@@ -24,6 +24,7 @@ namespace SDnDSlideshow
             _slideShowForms = new List<SlideshowForm>();
             _slideshows = new List<Slideshow>();
             _slideshowMap = new Dictionary<SlideshowForm, Slideshow>();
+            _listMap = new Dictionary<ListViewItem, SlideshowForm>();
 
             // update the image every 1000 MS
             System.Timers.Timer timer = new System.Timers.Timer(1000);
@@ -74,7 +75,7 @@ namespace SDnDSlideshow
             }
         }
 
-        private void startStopButton_Click(object sender, EventArgs e)
+        private void startButton_Click(object sender, EventArgs e)
         {
             SlideshowForm slideForm = new SlideshowForm();
             slideForm.Show();
@@ -83,6 +84,19 @@ namespace SDnDSlideshow
             ss.addDirectory(folderBrowserDialog1.SelectedPath.ToString());
             _slideshows.Add(ss);
             _slideshowMap[slideForm] = ss;
+            ListViewItem lvi = new ListViewItem(folderBrowserDialog1.SelectedPath.ToString(), 0);
+            _listMap[lvi] = slideForm;
+            slideShowListView.Items.Add(lvi);
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            foreach(ListViewItem lvi in slideShowListView.SelectedItems)
+            {
+                _slideShowForms.Remove(_listMap[lvi]);
+                _listMap[lvi].Dispose();
+                slideShowListView.Items.Remove(lvi);
+            }
         }
 
 
@@ -90,5 +104,6 @@ namespace SDnDSlideshow
         private List<Slideshow> _slideshows;
         private List<SlideshowForm> _slideShowForms;
         private Dictionary<SlideshowForm, Slideshow> _slideshowMap;
+        private Dictionary<ListViewItem, SlideshowForm> _listMap;
     }
 }

@@ -35,7 +35,10 @@
             this.slideShowDirTextBox = new System.Windows.Forms.TextBox();
             this.browseButton = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.startStopButton = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
+            this.slideShowListView = new System.Windows.Forms.ListView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.stopButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -101,22 +104,52 @@
             this.browseButton.UseVisualStyleBackColor = true;
             this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
             // 
-            // startStopButton
+            // startButton
             // 
-            this.startStopButton.Location = new System.Drawing.Point(19, 185);
-            this.startStopButton.Name = "startStopButton";
-            this.startStopButton.Size = new System.Drawing.Size(90, 23);
-            this.startStopButton.TabIndex = 4;
-            this.startStopButton.Text = "Start Slideshow";
-            this.startStopButton.UseVisualStyleBackColor = true;
-            this.startStopButton.Click += new System.EventHandler(this.startStopButton_Click);
+            this.startButton.Location = new System.Drawing.Point(19, 185);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(90, 23);
+            this.startButton.TabIndex = 4;
+            this.startButton.Text = "Start Slideshow";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // slideShowListView
+            // 
+            this.slideShowListView.Location = new System.Drawing.Point(340, 18);
+            this.slideShowListView.Name = "slideShowListView";
+            this.slideShowListView.Size = new System.Drawing.Size(363, 189);
+            this.slideShowListView.TabIndex = 5;
+            this.slideShowListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(337, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Running Slideshows";
+            // 
+            // stopButton
+            // 
+            this.stopButton.Location = new System.Drawing.Point(340, 214);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(100, 23);
+            this.stopButton.TabIndex = 7;
+            this.stopButton.Text = "Stop Slideshow";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.startStopButton);
+            this.ClientSize = new System.Drawing.Size(735, 261);
+            this.Controls.Add(this.stopButton);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.slideShowListView);
+            this.Controls.Add(this.startButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -126,6 +159,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -138,7 +172,10 @@
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.TextBox slideShowDirTextBox;
-        private System.Windows.Forms.Button startStopButton;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.ListView slideShowListView;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button stopButton;
     }
 }
 
