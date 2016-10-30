@@ -30,7 +30,14 @@ namespace SDnDSlideshow
 
         public void addDirectory(string path)
         {
-            _files.AddRange(Directory.GetFiles(path));
+            try
+            {
+                _files.AddRange(Directory.GetFiles(path));
+            }
+            catch (System.ArgumentException)
+            {
+
+            }
         }
 
         public bool loadFromFile(string filePath)

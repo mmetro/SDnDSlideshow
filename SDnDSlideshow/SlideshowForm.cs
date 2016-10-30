@@ -32,7 +32,6 @@ namespace SDnDSlideshow
                 _image = Image.FromFile(_imagePath);
                 if (_image != null)
                 {
-                    changeSize(_image.Size);
                     pictureBox1.Image = _image;
                     
                     if (i2 != null)
@@ -40,24 +39,6 @@ namespace SDnDSlideshow
                         i2.Dispose();
                     }
                 }
-            }
-        }
-
-        delegate void ChangeSizeCallback(Size s);
-
-        private void changeSize(Size s)
-        {
-            if (this.InvokeRequired)
-            {
-                ChangeSizeCallback d = new ChangeSizeCallback(changeSize);
-                this.Invoke(d, new object[] { s });
-            }
-            else
-            {
-                //this.ClientSize = s;
-                //pictureBox1.Size = _image.Size;
-
-                //pictureBox1.Size = this.ClientSize;
             }
         }
 
