@@ -16,7 +16,6 @@ namespace SDnDSlideshow
             _files = new HashSet<String>();
             isLocked = false;
             _directories = new HashSet<String>();
-            _needNewIterator = false;
             // check for new files every 10 seconds
             System.Timers.Timer timer = new System.Timers.Timer(10000);
             timer.Elapsed += HandleTimer;
@@ -25,7 +24,6 @@ namespace SDnDSlideshow
 
         public IEnumerator<String> GetEnumerator()
         {
-
             // Need ToList() to prevent problems when new files are added
             foreach (String f in _files.ToList())
             {
@@ -39,7 +37,7 @@ namespace SDnDSlideshow
             isLocked = true;
         }
 
-        // allow new files to be automaticall added to the slideshow
+        // allow new files to be automatically added to the slideshow
         public void unlockSlideshow()
         {
             isLocked = false;
@@ -58,12 +56,11 @@ namespace SDnDSlideshow
                 foreach(string f in Directory.GetFiles(path))
                 {
                     _files.Add(f);
-                    _needNewIterator = true;
                 }
             }
             catch (System.ArgumentException)
             {
-
+                // directory doesn't exist
             }
         }
 
@@ -99,6 +96,5 @@ namespace SDnDSlideshow
         private HashSet<String> _files;
         private HashSet<String> _directories;
         private bool isLocked;
-        bool _needNewIterator;
     }
 }

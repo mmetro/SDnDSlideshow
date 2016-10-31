@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 namespace SDnDSlideshow
 {
+    // XXX should rename the class
     public partial class Form1 : Form
     {
         public Form1()
@@ -49,7 +50,6 @@ namespace SDnDSlideshow
             }
             Screen screen = Screen.AllScreens[selectedIndex];
             MessageBox.Show("Name: " + screen.DeviceName + "\n Working area: " + screen.WorkingArea.ToString(), "Selected Screen Info");
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -72,7 +72,7 @@ namespace SDnDSlideshow
         // periodically called to change the displayed image
         private void HandleTimer(object source, ElapsedEventArgs e)
         {
-            foreach (SlideshowForm sf in _slideShowForms)
+            foreach (SlideshowForm sf in _slideShowForms.ToList())
             {
                 sf.changeImage(_slideshowIEMap[sf].Current);
                 if(!_slideshowIEMap[sf].MoveNext())
