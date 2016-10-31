@@ -48,6 +48,11 @@ namespace SDnDSlideshow
             _files.Add(path);
         }
 
+        public void removeImage(string path)
+        {
+            _files.Remove(path);
+        }
+
         public void addDirectory(string path)
         {
             _directories.Add(path);
@@ -62,6 +67,11 @@ namespace SDnDSlideshow
             {
                 // directory doesn't exist
             }
+        }
+
+        public void removeDirectory(string path)
+        {
+            _directories.Remove(path);
         }
 
         public bool loadFromFile(string filePath)

@@ -87,8 +87,9 @@ namespace SDnDSlideshow
         {
             SlideshowForm slideForm = new SlideshowForm();
             slideForm.Show();
-            _slideShowForms.Add(slideForm);
             Slideshow ss = new Slideshow();
+            slideForm.setSlideshow(ref ss);
+            _slideShowForms.Add(slideForm);
             // add some pictures to the slideshow
             ss.addDirectory(folderBrowserDialog1.SelectedPath.ToString());
             _slideshows.Add(ss);

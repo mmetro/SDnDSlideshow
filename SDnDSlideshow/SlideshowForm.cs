@@ -46,6 +46,7 @@ namespace SDnDSlideshow
                 catch (System.IO.FileNotFoundException)
                 {
                     // picture was removed
+                    _slideshow.removeImage(imagePath);
                 }
             }
         }
