@@ -30,15 +30,22 @@ namespace SDnDSlideshow
             if (extension.Equals(".jpg") || extension.Equals(".bmp") || extension.Equals(".png") || extension.Equals(".gif"))
             {
                 Image i2 = _image;
-                _image = Image.FromFile(_imagePath);
-                if (_image != null)
+                try
                 {
-                    pictureBox1.Image = _image;
-                    
-                    if (i2 != null)
+                    _image = Image.FromFile(_imagePath);
+                    if (_image != null)
                     {
-                        i2.Dispose();
+                        pictureBox1.Image = _image;
+
+                        if (i2 != null)
+                        {
+                            i2.Dispose();
+                        }
                     }
+                }
+                catch (System.IO.FileNotFoundException)
+                {
+                    // picture was removed
                 }
             }
         }

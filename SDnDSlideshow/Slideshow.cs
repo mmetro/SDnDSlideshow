@@ -15,6 +15,8 @@ namespace SDnDSlideshow
         {
             _files = new HashSet<String>();
             isLocked = false;
+            _directories = new HashSet<String>();
+            _needNewIterator = false;
             // check for new files every 10 seconds
             System.Timers.Timer timer = new System.Timers.Timer(10000);
             timer.Elapsed += HandleTimer;
@@ -23,9 +25,12 @@ namespace SDnDSlideshow
 
         public IEnumerator<String> GetEnumerator()
         {
-            foreach (String f in _files)
+
+            // Need this to prevent problems when new files are added
+            IEnumerator<String> enumerator = _files.ToList().GetEnumerator();
+            while (enumerator.MoveNext())
             {
-                yield return f;
+                yield return enumerator.Current;
             }
         }
 
@@ -54,6 +59,7 @@ namespace SDnDSlideshow
                 foreach(string f in Directory.GetFiles(path))
                 {
                     _files.Add(f);
+                    _needNewIterator = true;
                 }
             }
             catch (System.ArgumentException)
@@ -87,11 +93,13 @@ namespace SDnDSlideshow
 
         private void HandleTimer(object source, ElapsedEventArgs e)
         {
-            updateFilesFromDirectories();
+            if(!isLocked)
+                updateFilesFromDirectories();
         }
 
         private HashSet<String> _files;
         private HashSet<String> _directories;
         private bool isLocked;
+        bool _needNewIterator;
     }
 }
