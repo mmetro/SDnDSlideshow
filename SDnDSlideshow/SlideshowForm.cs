@@ -18,6 +18,7 @@ namespace SDnDSlideshow
             InitializeComponent();
         }
 
+        // tell the form to display the image given in the filepath
         public void changeImage(String imagePath)
         {
             _imagePath = imagePath;
@@ -52,12 +53,14 @@ namespace SDnDSlideshow
             //g.DrawImage(_image, 0, 0);
         }
 
+        // override to not draw the form background
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             //empty implementation
             //we don't want to paint the background
         }
 
+        // XXX should probably get rid of this
         public void setSlideshow(ref Slideshow ss)
         {
             _slideshow = ss;

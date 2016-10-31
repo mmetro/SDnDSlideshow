@@ -38,6 +38,7 @@ namespace SDnDSlideshow
 
         }
 
+        // display information about the selected screen
         private void button1_Click_1(object sender, EventArgs e)
         {
             int selectedIndex = screenComboBox1.SelectedIndex;
@@ -56,6 +57,7 @@ namespace SDnDSlideshow
             
         }
 
+        // Handler for when the browse button is clicked
         private void browseButton_Click(object sender, EventArgs e)
         {
             DialogResult result = folderBrowserDialog1.ShowDialog();
@@ -67,6 +69,7 @@ namespace SDnDSlideshow
             }
         }
 
+        // periodically called to change the displayed image
         private void HandleTimer(object source, ElapsedEventArgs e)
         {
             foreach (SlideshowForm sf in _slideShowForms)
@@ -79,23 +82,29 @@ namespace SDnDSlideshow
             }
         }
 
+        // handler for when the start slideshow button is clicked
         private void startButton_Click(object sender, EventArgs e)
         {
             SlideshowForm slideForm = new SlideshowForm();
             slideForm.Show();
             _slideShowForms.Add(slideForm);
             Slideshow ss = new Slideshow();
+            // add some pictures to the slideshow
             ss.addDirectory(folderBrowserDialog1.SelectedPath.ToString());
             _slideshows.Add(ss);
+            // Map slideshow forms to slideshows (views to models)
             _slideshowMap[slideForm] = ss;
             // get an enumerator for the slideshow.
             // This allows us to have a one-to-many slideshow-to-view relationship
             _slideshowIEMap[slideForm] = ss.GetEnumerator();
+            // Map an item in the list of slideshows to the slideshow itself
+            // We need this to determine which slideshow the user wants to stop
             ListViewItem lvi = new ListViewItem(folderBrowserDialog1.SelectedPath.ToString(), 0);
             _listMap[lvi] = slideForm;
             slideShowListView.Items.Add(lvi);
         }
 
+        // Stop all of the selected slideshows
         private void stopButton_Click(object sender, EventArgs e)
         {
             foreach(ListViewItem lvi in slideShowListView.SelectedItems)
@@ -106,8 +115,6 @@ namespace SDnDSlideshow
             }
         }
 
-
-        private int currFile;
         private List<Slideshow> _slideshows;
         private List<SlideshowForm> _slideShowForms;
         private Dictionary<SlideshowForm, Slideshow> _slideshowMap;

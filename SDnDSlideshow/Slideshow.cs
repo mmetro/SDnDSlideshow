@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace SDnDSlideshow
 {
@@ -13,18 +14,12 @@ namespace SDnDSlideshow
         public Slideshow()
         {
             _files = new HashSet<String>();
+            isLocked = false;
+            // check for new files every 10 seconds
+            System.Timers.Timer timer = new System.Timers.Timer(10000);
+            timer.Elapsed += HandleTimer;
+            timer.Start();
         }
-
-        // If i is >= the number of files, it will loop around
-        /**
-        public string getImage(int i)
-        {
-            if (_files.Count <= 0)
-                return "";
-            return _files[i%_files.Count];
-        }
-        */
-
 
         public IEnumerator<String> GetEnumerator()
         {
@@ -34,6 +29,18 @@ namespace SDnDSlideshow
             }
         }
 
+        // prevent new files from being added to the slideshow
+        public void lockSlideshow()
+        {
+            isLocked = true;
+        }
+
+        // allow new files to be automaticall added to the slideshow
+        public void unlockSlideshow()
+        {
+            isLocked = false;
+        }
+
         public void addImage(string path)
         {
             _files.Add(path);
@@ -41,6 +48,7 @@ namespace SDnDSlideshow
 
         public void addDirectory(string path)
         {
+            _directories.Add(path);
             try
             {
                 foreach(string f in Directory.GetFiles(path))
@@ -64,6 +72,26 @@ namespace SDnDSlideshow
             return false;
         }
 
+        // periodically called to update new files
+        // Does not currently remove deleted files. XXX do we need to do this?
+        private void updateFilesFromDirectories()
+        {
+            foreach( String d in _directories)
+            {
+                foreach (string f in Directory.GetFiles(d))
+                {
+                    _files.Add(f);
+                }
+            }
+        }
+
+        private void HandleTimer(object source, ElapsedEventArgs e)
+        {
+            updateFilesFromDirectories();
+        }
+
         private HashSet<String> _files;
+        private HashSet<String> _directories;
+        private bool isLocked;
     }
 }
