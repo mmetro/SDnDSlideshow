@@ -88,11 +88,19 @@ namespace SDnDSlideshow
         // Does not currently remove deleted files. XXX do we need to do this?
         private void updateFilesFromDirectories()
         {
-            foreach( String d in _directories)
+            foreach( String d in _directories.ToList())
             {
-                foreach (string f in Directory.GetFiles(d))
+                try
                 {
-                    _files.Add(f);
+                    foreach (string f in Directory.GetFiles(d))
+                    {
+                        _files.Add(f);
+                    }
+                }
+                catch (System.ArgumentException)
+                {
+                    // directory doesn't exist
+                    _directories.Remove(d);
                 }
             }
         }
