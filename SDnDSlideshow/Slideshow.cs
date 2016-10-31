@@ -26,11 +26,10 @@ namespace SDnDSlideshow
         public IEnumerator<String> GetEnumerator()
         {
 
-            // Need this to prevent problems when new files are added
-            IEnumerator<String> enumerator = _files.ToList().GetEnumerator();
-            while (enumerator.MoveNext())
+            // Need ToList() to prevent problems when new files are added
+            foreach (String f in _files.ToList())
             {
-                yield return enumerator.Current;
+                yield return f;
             }
         }
 
