@@ -24,6 +24,7 @@ namespace SDnDSlideshow
             _slideShowForms = new List<SlideshowForm>();
             _slideshows = new List<Slideshow>();
             _slideshowMap = new Dictionary<SlideshowForm, Slideshow>();
+            _slideshowIEMap = new Dictionary<SlideshowForm, IEnumerator<String>>();
             _listMap = new Dictionary<ListViewItem, SlideshowForm>();
 
             // update the image every 1000 MS
@@ -70,8 +71,11 @@ namespace SDnDSlideshow
         {
             foreach (SlideshowForm sf in _slideShowForms)
             {
-                sf.changeImage(_slideshowMap[sf].getImage(currFile));
-                currFile++;
+                sf.changeImage(_slideshowIEMap[sf].Current);
+                if(!_slideshowIEMap[sf].MoveNext())
+                {
+                    _slideshowIEMap[sf] = _slideshowMap[sf].GetEnumerator();
+                }
             }
         }
 
@@ -84,6 +88,9 @@ namespace SDnDSlideshow
             ss.addDirectory(folderBrowserDialog1.SelectedPath.ToString());
             _slideshows.Add(ss);
             _slideshowMap[slideForm] = ss;
+            // get an enumerator for the slideshow.
+            // This allows us to have a one-to-many slideshow-to-view relationship
+            _slideshowIEMap[slideForm] = ss.GetEnumerator();
             ListViewItem lvi = new ListViewItem(folderBrowserDialog1.SelectedPath.ToString(), 0);
             _listMap[lvi] = slideForm;
             slideShowListView.Items.Add(lvi);
@@ -104,6 +111,7 @@ namespace SDnDSlideshow
         private List<Slideshow> _slideshows;
         private List<SlideshowForm> _slideShowForms;
         private Dictionary<SlideshowForm, Slideshow> _slideshowMap;
+        private Dictionary<SlideshowForm, IEnumerator<String>> _slideshowIEMap;
         private Dictionary<ListViewItem, SlideshowForm> _listMap;
     }
 }

@@ -12,15 +12,26 @@ namespace SDnDSlideshow
     {
         public Slideshow()
         {
-            _files = new List<String>();
+            _files = new HashSet<String>();
         }
 
         // If i is >= the number of files, it will loop around
+        /**
         public string getImage(int i)
         {
             if (_files.Count <= 0)
                 return "";
             return _files[i%_files.Count];
+        }
+        */
+
+
+        public IEnumerator<String> GetEnumerator()
+        {
+            foreach (String f in _files)
+            {
+                yield return f;
+            }
         }
 
         public void addImage(string path)
@@ -32,7 +43,10 @@ namespace SDnDSlideshow
         {
             try
             {
-                _files.AddRange(Directory.GetFiles(path));
+                foreach(string f in Directory.GetFiles(path))
+                {
+                    _files.Add(f);
+                }
             }
             catch (System.ArgumentException)
             {
@@ -50,6 +64,6 @@ namespace SDnDSlideshow
             return false;
         }
 
-        private List<String> _files;
+        private HashSet<String> _files;
     }
 }

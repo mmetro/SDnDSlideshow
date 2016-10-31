@@ -54,8 +54,8 @@ namespace SDnDSlideshow
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
-            //empty implementationwe don't want to paint the background
-            // 
+            //empty implementation
+            //we don't want to paint the background
         }
 
         public void setSlideshow(ref Slideshow ss)
