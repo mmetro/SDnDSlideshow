@@ -116,6 +116,22 @@ namespace SDnDSlideshow
             }
         }
 
+        private void lockButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lvi in slideShowListView.SelectedItems)
+            {
+                _slideshowMap[_listMap[lvi]].lockSlideshow();
+            }
+        }
+
+        private void unlockButton_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lvi in slideShowListView.SelectedItems)
+            {
+                _slideshowMap[_listMap[lvi]].unlockSlideshow();
+            }
+        }
+
         private List<Slideshow> _slideshows;
         private List<SlideshowForm> _slideShowForms;
         private Dictionary<SlideshowForm, Slideshow> _slideshowMap;

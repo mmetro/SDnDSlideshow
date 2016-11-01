@@ -39,6 +39,8 @@
             this.slideShowListView = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.stopButton = new System.Windows.Forms.Button();
+            this.lockButton = new System.Windows.Forms.Button();
+            this.unlockButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -141,11 +143,33 @@
             this.stopButton.UseVisualStyleBackColor = true;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
+            // lockButton
+            // 
+            this.lockButton.Location = new System.Drawing.Point(449, 214);
+            this.lockButton.Name = "lockButton";
+            this.lockButton.Size = new System.Drawing.Size(91, 23);
+            this.lockButton.TabIndex = 8;
+            this.lockButton.Text = "Lock Slideshow";
+            this.lockButton.UseVisualStyleBackColor = true;
+            this.lockButton.Click += new System.EventHandler(this.lockButton_Click);
+            // 
+            // unlockButton
+            // 
+            this.unlockButton.Location = new System.Drawing.Point(547, 214);
+            this.unlockButton.Name = "unlockButton";
+            this.unlockButton.Size = new System.Drawing.Size(105, 23);
+            this.unlockButton.TabIndex = 9;
+            this.unlockButton.Text = "Unlock Slideshow";
+            this.unlockButton.UseVisualStyleBackColor = true;
+            this.unlockButton.Click += new System.EventHandler(this.unlockButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 261);
+            this.Controls.Add(this.unlockButton);
+            this.Controls.Add(this.lockButton);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.slideShowListView);
@@ -176,6 +200,8 @@
         private System.Windows.Forms.ListView slideShowListView;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Button lockButton;
+        private System.Windows.Forms.Button unlockButton;
     }
 }
 
