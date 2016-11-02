@@ -94,7 +94,13 @@ namespace SDnDSlideshow
     private Slideshow _slideshow;
     private Form1 _controller;
 
-
+    private void SlideshowForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      if (_image != null)
+      {
+        _image.Dispose();
+      }
+    }
   }
 
 }

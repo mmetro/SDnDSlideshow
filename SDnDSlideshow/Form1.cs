@@ -73,6 +73,7 @@ namespace SDnDSlideshow
     public void slideFormClosedHandler(SlideshowForm sf)
     {
       slideShowListView.Items.Remove(_SlideshowFormToLVIMap[sf]);
+      _slideshows.Remove(_slideshowMap[sf]);
       _SlideshowFormToLVIMap.Remove(sf);
       _slideshowIEMap.Remove(sf);
       _slideshowMap.Remove(sf);
@@ -123,9 +124,7 @@ namespace SDnDSlideshow
     {
       foreach (ListViewItem lvi in slideShowListView.SelectedItems)
       {
-        _slideShowForms.Remove(_lviToSlideshowFormMap[lvi]);
-        _lviToSlideshowFormMap[lvi].Dispose();
-        slideShowListView.Items.Remove(lvi);
+        _lviToSlideshowFormMap[lvi].Close();
       }
     }
 

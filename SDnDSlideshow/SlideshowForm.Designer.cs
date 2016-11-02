@@ -49,6 +49,7 @@
       this.Controls.Add(this.pictureBox1);
       this.Name = "SlideshowForm";
       this.Text = "SlideshowForm";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SlideshowForm_FormClosing);
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SlideshowForm_FormClosed);
       this.SizeChanged += new System.EventHandler(this.SlideshowForm_SizeChanged);
       this.Paint += new System.Windows.Forms.PaintEventHandler(this.SlideshowForm_Paint);
