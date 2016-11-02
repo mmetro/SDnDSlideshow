@@ -6,20 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Forms;
 
 namespace SDnDSlideshow
 {
-    public class Slideshow
-    {
+    public class Slideshow : IDisposable
+  {
         public Slideshow()
         {
             _files = new HashSet<String>();
             isLocked = false;
             _directories = new HashSet<String>();
             // check for new files every 10 seconds
-            System.Timers.Timer timer = new System.Timers.Timer(10000);
-            timer.Elapsed += HandleTimer;
-            timer.Start();
+            _timer = new System.Timers.Timer(10000);
+            _timer.Elapsed += HandleTimer;
+            _timer.Start();
+        }
+
+        public void Dispose()
+        {
+          _timer.Stop();
         }
 
         public IEnumerator<String> GetEnumerator()
@@ -113,6 +119,7 @@ namespace SDnDSlideshow
 
         private HashSet<String> _files;
         private HashSet<String> _directories;
+        private System.Timers.Timer _timer;
         private bool isLocked;
     }
 }
