@@ -69,7 +69,7 @@ namespace SDnDSlideshow
     }
 
     // XXX should probably get rid of this
-    public void setSlideshow(ref Slideshow ss)
+    public void setSlideshow(Slideshow ss)
     {
       _slideshow = ss;
     }

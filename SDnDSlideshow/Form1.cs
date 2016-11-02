@@ -74,6 +74,7 @@ namespace SDnDSlideshow
     {
       slideShowListView.Items.Remove(_SlideshowFormToLVIMap[sf]);
       _slideshows.Remove(_slideshowMap[sf]);
+      _lviToSlideshowFormMap.Remove(_SlideshowFormToLVIMap[sf]);
       _SlideshowFormToLVIMap.Remove(sf);
       _slideshowIEMap.Remove(sf);
       _slideshowMap.Remove(sf);
@@ -100,7 +101,7 @@ namespace SDnDSlideshow
       SlideshowForm slideForm = new SlideshowForm();
       slideForm.Show();
       Slideshow ss = new Slideshow();
-      slideForm.setSlideshow(ref ss);
+      slideForm.setSlideshow(ss);
       slideForm.setController(this);
       _slideShowForms.Add(slideForm);
       // add some pictures to the slideshow
