@@ -10,116 +10,133 @@ using System.Windows.Forms;
 
 namespace SDnDSlideshow
 {
-    public class Slideshow : IDisposable
+  public class Slideshow : IDisposable
   {
-        public Slideshow()
-        {
-            _files = new HashSet<String>();
-            isLocked = false;
-            _directories = new HashSet<String>();
-            // check for new files every 10 seconds
-            _timer = new System.Timers.Timer(10000);
-            _timer.Elapsed += HandleTimer;
-            _timer.Start();
-        }
-
-        public void Dispose()
-        {
-          _timer.Stop();
-        }
-
-        public IEnumerator<String> GetEnumerator()
-        {
-            // Need ToList() to prevent problems when new files are added
-            foreach (String f in _files.ToList())
-            {
-                yield return f;
-            }
-        }
-
-        // prevent new files from being added to the slideshow
-        public void lockSlideshow()
-        {
-            isLocked = true;
-        }
-
-        // allow new files to be automatically added to the slideshow
-        public void unlockSlideshow()
-        {
-            isLocked = false;
-        }
-
-        public void addImage(string path)
-        {
-            _files.Add(path);
-        }
-
-        public void removeImage(string path)
-        {
-            _files.Remove(path);
-        }
-
-        public void addDirectory(string path)
-        {
-            _directories.Add(path);
-            try
-            {
-                foreach(string f in Directory.GetFiles(path))
-                {
-                    _files.Add(f);
-                }
-            }
-            catch (System.ArgumentException)
-            {
-                // directory doesn't exist
-            }
-        }
-
-        public void removeDirectory(string path)
-        {
-            _directories.Remove(path);
-        }
-
-        public bool loadFromFile(string filePath)
-        {
-            return false;
-        }
-
-        public bool saveToFile(string filePath)
-        {
-            return false;
-        }
-
-        // periodically called to update new files
-        // Does not currently remove deleted files. XXX do we need to do this?
-        private void updateFilesFromDirectories()
-        {
-            foreach( String d in _directories.ToList())
-            {
-                try
-                {
-                    foreach (string f in Directory.GetFiles(d))
-                    {
-                        _files.Add(f);
-                    }
-                }
-                catch (System.ArgumentException)
-                {
-                    // directory doesn't exist
-                    _directories.Remove(d);
-                }
-            }
-        }
-
-        private void HandleTimer(object source, ElapsedEventArgs e)
-        {
-            if(!isLocked)
-                updateFilesFromDirectories();
-        }
-
-        private HashSet<String> _files;
-        private HashSet<String> _directories;
-        private System.Timers.Timer _timer;
-        private bool isLocked;
+    public Slideshow()
+    {
+      _files = new HashSet<String>();
+      isLocked = false;
+      _directories = new HashSet<String>();
+      // check for new files every 10 seconds
+      _timer = new System.Timers.Timer(10000);
+      _timer.Elapsed += handleTimer;
+      _timer.Start();
     }
+
+    /// <summary>Call to dispose the Slideshow</summary>
+    public void Dispose()
+    {
+      _timer.Stop();
+    }
+
+    /// <summary>Return an IEnumerator for all the files in the slideshow</summary>
+    /// <returns>An IEnumerator of type String that iterates over filepaths</returns>
+    public IEnumerator<String> GetEnumerator()
+    {
+      // Need ToList() to prevent problems when new files are added
+      foreach (String f in _files.ToList())
+      {
+        yield return f;
+      }
+    }
+
+    /// <summary>Prevent new files from being added to the slideshow</summary>
+    public void lockSlideshow()
+    {
+      isLocked = true;
+    }
+
+    /// <summary>Allow new files to be automatically added to the slideshow</summary>
+    public void unlockSlideshow()
+    {
+      isLocked = false;
+    }
+
+    /// <summary>Add an image to the slideshow</summary>
+    /// <param name="path">The file path to the image </param>
+    public void addImage(string path)
+    {
+      _files.Add(path);
+    }
+
+    /// <summary>Remove an image from the slideshow</summary>
+    /// <param name="path">The file path to the image </param>
+    public void removeImage(string path)
+    {
+      _files.Remove(path);
+    }
+
+    /// <summary>Add a directory to the slideshow</summary>
+    /// <param name="path">The file path to the directory </param>
+    public void addDirectory(string path)
+    {
+      _directories.Add(path);
+      try
+      {
+        foreach (string f in Directory.GetFiles(path))
+        {
+          _files.Add(f);
+        }
+      }
+      catch (System.ArgumentException)
+      {
+        // directory doesn't exist
+      }
+    }
+
+    /// <summary>Remove a directory from the slideshow</summary>
+    /// <param name="path">The file path to the directory </param>
+    public void removeDirectory(string path)
+    {
+      _directories.Remove(path);
+    }
+
+    /// <summary>Load a slideshow from a file</summary>
+    /// <param name="path">The file path to the slideshow file</param>
+    public bool loadFromFile(string filePath)
+    {
+      throw new NotImplementedException();
+    }
+
+    /// <summary>Save a slideshow to a file</summary>
+    /// <param name="path">The file path to the slideshow file</param>
+    public bool saveToFile(string filePath)
+    {
+      throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// periodically called to update new files
+    /// Does not currently remove deleted files. XXX do we need to do this?
+    ///</summary>
+    private void updateFilesFromDirectories()
+    {
+      foreach (String d in _directories.ToList())
+      {
+        try
+        {
+          foreach (string f in Directory.GetFiles(d))
+          {
+            _files.Add(f);
+          }
+        }
+        catch (System.ArgumentException)
+        {
+          // directory doesn't exist
+          _directories.Remove(d);
+        }
+      }
+    }
+
+    private void handleTimer(object source, ElapsedEventArgs e)
+    {
+      if (!isLocked)
+        updateFilesFromDirectories();
+    }
+
+    private HashSet<String> _files;
+    private HashSet<String> _directories;
+    private System.Timers.Timer _timer;
+    private bool isLocked;
+  }
 }

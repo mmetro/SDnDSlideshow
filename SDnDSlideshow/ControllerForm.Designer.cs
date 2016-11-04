@@ -1,6 +1,6 @@
 ﻿namespace SDnDSlideshow
 {
-    partial class Form1
+    partial class ControllerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -63,7 +63,6 @@
             this.screenComboBox1.Size = new System.Drawing.Size(121, 21);
             this.screenComboBox1.TabIndex = 1;
             this.screenComboBox1.Text = "Select a Screen";
-            this.screenComboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -178,7 +177,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

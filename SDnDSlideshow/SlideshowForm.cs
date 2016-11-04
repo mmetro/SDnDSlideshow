@@ -18,7 +18,8 @@ namespace SDnDSlideshow
       InitializeComponent();
     }
 
-    // tell the form to display the image given in the filepath
+    /// <summary>Change the image displayed by the form</summary>
+    /// <param name="imagePath">The path to the image</param>
     public void changeImage(String imagePath)
     {
       _imagePath = imagePath;
@@ -27,7 +28,10 @@ namespace SDnDSlideshow
         return;
       }
       String extension = Path.GetExtension(_imagePath);
-      if (extension.Equals(".jpg") || extension.Equals(".bmp") || extension.Equals(".png") || extension.Equals(".gif"))
+      if (extension.Equals(".jpg", StringComparison.InvariantCultureIgnoreCase)
+        || extension.Equals(".bmp", StringComparison.InvariantCultureIgnoreCase)
+        || extension.Equals(".png", StringComparison.InvariantCultureIgnoreCase)
+        || extension.Equals(".gif", StringComparison.InvariantCultureIgnoreCase))
       {
         Image i2 = _image;
         try
@@ -49,32 +53,22 @@ namespace SDnDSlideshow
           _slideshow.removeImage(imagePath);
         }
       }
-    }
-
-    private void SlideshowForm_Paint(object sender, PaintEventArgs e)
-    {
-      if (_image == null)
+      else
       {
-        return;
+        _slideshow.removeImage(imagePath);
       }
-      //Graphics g = e.Graphics;
-      //g.DrawImage(_image, 0, 0);
     }
 
-    // override to not draw the form background
-    protected override void OnPaintBackground(PaintEventArgs e)
-    {
-      //empty implementation
-      //we don't want to paint the background
-    }
-
-    // XXX should probably get rid of this
+    /// <summary>Set the Slideshow model for the Slideshow Form</summary>
+    /// <param name="ss">The slideshow model</param>
     public void setSlideshow(Slideshow ss)
     {
       _slideshow = ss;
     }
 
-    public void setController(Form1 c)
+    /// <summary>Set the controller for the Slideshow Form</summary>
+    /// <param name="c">The controller</param>
+    public void setController(ControllerForm c)
     {
       _controller = c;
     }
@@ -89,11 +83,6 @@ namespace SDnDSlideshow
       _controller.slideFormClosedHandler(this);
     }
 
-    private Image _image;
-    private String _imagePath;
-    private Slideshow _slideshow;
-    private Form1 _controller;
-
     private void SlideshowForm_FormClosing(object sender, FormClosingEventArgs e)
     {
       if (_image != null)
@@ -101,6 +90,10 @@ namespace SDnDSlideshow
         _image.Dispose();
       }
     }
-  }
 
+    private Image _image;
+    private String _imagePath;
+    private Slideshow _slideshow;
+    private ControllerForm _controller;
+  }
 }

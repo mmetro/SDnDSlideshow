@@ -13,9 +13,9 @@ using System.Windows.Forms;
 namespace SDnDSlideshow
 {
   // XXX should rename the class
-  public partial class Form1 : Form
+  public partial class ControllerForm : Form
   {
-    public Form1()
+    public ControllerForm()
     {
       InitializeComponent();
       foreach (var screen in Screen.AllScreens)
@@ -31,16 +31,11 @@ namespace SDnDSlideshow
 
       // update the image every 1000 MS
       System.Timers.Timer timer = new System.Timers.Timer(1000);
-      timer.Elapsed += HandleTimer;
+      timer.Elapsed += handleTimer;
       timer.Start();
     }
 
-    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-
-    // display information about the selected screen
+    /// <summary>display information about the selected screen</summary>
     private void button1_Click_1(object sender, EventArgs e)
     {
       int selectedIndex = screenComboBox1.SelectedIndex;
@@ -53,12 +48,7 @@ namespace SDnDSlideshow
       MessageBox.Show("Name: " + screen.DeviceName + "\n Working area: " + screen.WorkingArea.ToString(), "Selected Screen Info");
     }
 
-    private void Form1_Load(object sender, EventArgs e)
-    {
-
-    }
-
-    // Handler for when the browse button is clicked
+    /// <summary>Handler for when the browse button is clicked</summary>
     private void browseButton_Click(object sender, EventArgs e)
     {
       DialogResult result = folderBrowserDialog1.ShowDialog();
@@ -70,9 +60,13 @@ namespace SDnDSlideshow
       }
     }
 
+    /// <summary>Called by A SlideshowForm when it closes</summary>
+    /// <param name="sf">The SlideshowForm that closed</param>
     public void slideFormClosedHandler(SlideshowForm sf)
     {
+      // Remove the slideshow and all related objects from the collections
       slideShowListView.Items.Remove(_SlideshowFormToLVIMap[sf]);
+      _slideshowMap[sf].Dispose();
       _slideshows.Remove(_slideshowMap[sf]);
       _lviToSlideshowFormMap.Remove(_SlideshowFormToLVIMap[sf]);
       _SlideshowFormToLVIMap.Remove(sf);
@@ -82,8 +76,8 @@ namespace SDnDSlideshow
       // XXX should we also remove their slideshow models? (Slideshow class)
     }
 
-    // periodically called to change the displayed image
-    private void HandleTimer(object source, ElapsedEventArgs e)
+    /// <summary>Periodically called to change the displayed image in all SlideshowForms</summary>
+    private void handleTimer(object source, ElapsedEventArgs e)
     {
       foreach (SlideshowForm sf in _slideShowForms.ToList())
       {
@@ -95,11 +89,13 @@ namespace SDnDSlideshow
       }
     }
 
-    // handler for when the start slideshow button is clicked
+    /// <summary>Handler for when the start slideshow button is clicked</summary>
     private void startButton_Click(object sender, EventArgs e)
     {
+      // Create a new slideshow form
       SlideshowForm slideForm = new SlideshowForm();
       slideForm.Show();
+      // Create a new slideshow model
       Slideshow ss = new Slideshow();
       slideForm.setSlideshow(ss);
       slideForm.setController(this);
@@ -120,7 +116,7 @@ namespace SDnDSlideshow
       slideShowListView.Items.Add(lvi);
     }
 
-    // Stop all of the selected slideshows
+    /// <summary>Stop all of the selected slideshows</summary>
     private void stopButton_Click(object sender, EventArgs e)
     {
       foreach (ListViewItem lvi in slideShowListView.SelectedItems)
@@ -145,11 +141,17 @@ namespace SDnDSlideshow
       }
     }
 
+    // Set of all slideshow models
     private HashSet<Slideshow> _slideshows;
+    // Set of all slideshow forms
     private HashSet<SlideshowForm> _slideShowForms;
+    // Map a slideshow form to its slideshow model
     private Dictionary<SlideshowForm, Slideshow> _slideshowMap;
+    // Map a slideshow form to an IEnumerator for its images' filepaths
     private Dictionary<SlideshowForm, IEnumerator<String>> _slideshowIEMap;
+    // Map a ListViewItem to its SlideshowForm
     private Dictionary<ListViewItem, SlideshowForm> _lviToSlideshowFormMap;
+    // Map a SlideshowForm to its ListViewItem
     private Dictionary<SlideshowForm, ListViewItem> _SlideshowFormToLVIMap;
   }
 }
