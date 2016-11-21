@@ -17,6 +17,7 @@ namespace SDnDSlideshow
     public ControllerForm()
     {
       InitializeComponent();
+      // Initialize all of the collections
       _slideShowForms = new HashSet<SlideshowForm>();
       _slideshows = new HashSet<Slideshow>();
       _slideshowMap = new Dictionary<SlideshowForm, Slideshow>();
@@ -24,9 +25,10 @@ namespace SDnDSlideshow
       _lviToSlideshowFormMap = new Dictionary<ListViewItem, SlideshowForm>();
       _SlideshowFormToLVIMap = new Dictionary<SlideshowForm, ListViewItem>();
       _slideshowIntervalMap = new Dictionary<SlideshowForm, uint>();
+      // Initialize the elapsed timer
       elapsed = 0;
 
-      // update the image every 1000 MS
+      // Update the image every 1000 MS
       System.Timers.Timer timer = new System.Timers.Timer(1000);
       timer.Elapsed += handleTimer;
       timer.Start();
@@ -66,6 +68,7 @@ namespace SDnDSlideshow
       elapsed++;
       foreach (SlideshowForm sf in _slideShowForms.ToList())
       {
+        // It's time to change the image
         if ((elapsed % _slideshowIntervalMap[sf]) == 0)
         {
           sf.changeImage(_slideshowIEMap[sf].Current);

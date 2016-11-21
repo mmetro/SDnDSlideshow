@@ -33,6 +33,7 @@ namespace SDnDSlideshow
         || extension.Equals(".png", StringComparison.InvariantCultureIgnoreCase)
         || extension.Equals(".gif", StringComparison.InvariantCultureIgnoreCase))
       {
+        // Backup reference to the image
         Image i2 = _image;
         try
         {
@@ -41,6 +42,7 @@ namespace SDnDSlideshow
           {
             pictureBox1.Image = _image;
 
+            // Delete the backup image if we successfully changed the displayed image
             if (i2 != null)
             {
               i2.Dispose();
@@ -55,6 +57,7 @@ namespace SDnDSlideshow
       }
       else
       {
+        // The file is not a supported image
         _slideshow.removeImage(imagePath);
       }
     }
