@@ -12,7 +12,6 @@ using System.Windows.Forms;
 
 namespace SDnDSlideshow
 {
-  // XXX should rename the class
   public partial class ControllerForm : Form
   {
     public ControllerForm()

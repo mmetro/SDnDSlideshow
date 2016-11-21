@@ -40,20 +40,24 @@
       this.unlockButton = new System.Windows.Forms.Button();
       this.intervalNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.label2 = new System.Windows.Forms.Label();
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.panel2 = new System.Windows.Forms.Panel();
       this.groupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.intervalNumericUpDown)).BeginInit();
+      this.panel1.SuspendLayout();
+      this.panel2.SuspendLayout();
       this.SuspendLayout();
       // 
       // groupBox2
       // 
       this.groupBox2.Controls.Add(this.slideShowDirTextBox);
       this.groupBox2.Controls.Add(this.browseButton);
-      this.groupBox2.Location = new System.Drawing.Point(12, 9);
+      this.groupBox2.Location = new System.Drawing.Point(5, 3);
       this.groupBox2.Name = "groupBox2";
-      this.groupBox2.Size = new System.Drawing.Size(260, 54);
+      this.groupBox2.Size = new System.Drawing.Size(268, 89);
       this.groupBox2.TabIndex = 3;
       this.groupBox2.TabStop = false;
-      this.groupBox2.Text = "Choose Directory";
+      this.groupBox2.Text = "Slideshow Settings";
       // 
       // slideShowDirTextBox
       // 
@@ -76,7 +80,7 @@
       // 
       // startButton
       // 
-      this.startButton.Location = new System.Drawing.Point(19, 116);
+      this.startButton.Location = new System.Drawing.Point(12, 98);
       this.startButton.Name = "startButton";
       this.startButton.Size = new System.Drawing.Size(90, 23);
       this.startButton.TabIndex = 4;
@@ -86,7 +90,7 @@
       // 
       // slideShowListView
       // 
-      this.slideShowListView.Location = new System.Drawing.Point(340, 18);
+      this.slideShowListView.Location = new System.Drawing.Point(10, 18);
       this.slideShowListView.Name = "slideShowListView";
       this.slideShowListView.Size = new System.Drawing.Size(363, 189);
       this.slideShowListView.TabIndex = 5;
@@ -95,7 +99,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(337, 2);
+      this.label1.Location = new System.Drawing.Point(7, 2);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(103, 13);
       this.label1.TabIndex = 6;
@@ -103,7 +107,7 @@
       // 
       // stopButton
       // 
-      this.stopButton.Location = new System.Drawing.Point(340, 214);
+      this.stopButton.Location = new System.Drawing.Point(10, 214);
       this.stopButton.Name = "stopButton";
       this.stopButton.Size = new System.Drawing.Size(100, 23);
       this.stopButton.TabIndex = 7;
@@ -113,7 +117,7 @@
       // 
       // lockButton
       // 
-      this.lockButton.Location = new System.Drawing.Point(449, 214);
+      this.lockButton.Location = new System.Drawing.Point(119, 214);
       this.lockButton.Name = "lockButton";
       this.lockButton.Size = new System.Drawing.Size(91, 23);
       this.lockButton.TabIndex = 8;
@@ -123,7 +127,7 @@
       // 
       // unlockButton
       // 
-      this.unlockButton.Location = new System.Drawing.Point(547, 214);
+      this.unlockButton.Location = new System.Drawing.Point(217, 214);
       this.unlockButton.Name = "unlockButton";
       this.unlockButton.Size = new System.Drawing.Size(105, 23);
       this.unlockButton.TabIndex = 9;
@@ -133,7 +137,7 @@
       // 
       // intervalNumericUpDown
       // 
-      this.intervalNumericUpDown.Location = new System.Drawing.Point(19, 83);
+      this.intervalNumericUpDown.Location = new System.Drawing.Point(12, 65);
       this.intervalNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -156,33 +160,52 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(74, 85);
+      this.label2.Location = new System.Drawing.Point(67, 67);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(93, 13);
       this.label2.TabIndex = 11;
       this.label2.Text = "Interval (Seconds)";
+      // 
+      // panel1
+      // 
+      this.panel1.Controls.Add(this.label2);
+      this.panel1.Controls.Add(this.intervalNumericUpDown);
+      this.panel1.Controls.Add(this.startButton);
+      this.panel1.Controls.Add(this.groupBox2);
+      this.panel1.Location = new System.Drawing.Point(7, 6);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(276, 133);
+      this.panel1.TabIndex = 12;
+      // 
+      // panel2
+      // 
+      this.panel2.Controls.Add(this.unlockButton);
+      this.panel2.Controls.Add(this.lockButton);
+      this.panel2.Controls.Add(this.stopButton);
+      this.panel2.Controls.Add(this.label1);
+      this.panel2.Controls.Add(this.slideShowListView);
+      this.panel2.Location = new System.Drawing.Point(330, 0);
+      this.panel2.Name = "panel2";
+      this.panel2.Size = new System.Drawing.Size(385, 251);
+      this.panel2.TabIndex = 13;
       // 
       // ControllerForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(735, 261);
-      this.Controls.Add(this.label2);
-      this.Controls.Add(this.intervalNumericUpDown);
-      this.Controls.Add(this.unlockButton);
-      this.Controls.Add(this.lockButton);
-      this.Controls.Add(this.stopButton);
-      this.Controls.Add(this.label1);
-      this.Controls.Add(this.slideShowListView);
-      this.Controls.Add(this.startButton);
-      this.Controls.Add(this.groupBox2);
+      this.Controls.Add(this.panel2);
+      this.Controls.Add(this.panel1);
       this.Name = "ControllerForm";
       this.Text = "Slideshow Controller";
       this.groupBox2.ResumeLayout(false);
       this.groupBox2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.intervalNumericUpDown)).EndInit();
+      this.panel1.ResumeLayout(false);
+      this.panel1.PerformLayout();
+      this.panel2.ResumeLayout(false);
+      this.panel2.PerformLayout();
       this.ResumeLayout(false);
-      this.PerformLayout();
 
         }
 
@@ -199,6 +222,8 @@
         private System.Windows.Forms.Button unlockButton;
     private System.Windows.Forms.NumericUpDown intervalNumericUpDown;
     private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Panel panel1;
+    private System.Windows.Forms.Panel panel2;
   }
 }
 
