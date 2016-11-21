@@ -28,6 +28,8 @@ namespace SDnDSlideshow
       _slideshowIEMap = new Dictionary<SlideshowForm, IEnumerator<String>>();
       _lviToSlideshowFormMap = new Dictionary<ListViewItem, SlideshowForm>();
       _SlideshowFormToLVIMap = new Dictionary<SlideshowForm, ListViewItem>();
+      _slideshowIntervalMap = new Dictionary<SlideshowForm, uint>();
+      elapsed = 0;
 
       // update the image every 1000 MS
       System.Timers.Timer timer = new System.Timers.Timer(1000);
@@ -79,12 +81,16 @@ namespace SDnDSlideshow
     /// <summary>Periodically called to change the displayed image in all SlideshowForms</summary>
     private void handleTimer(object source, ElapsedEventArgs e)
     {
+      elapsed++;
       foreach (SlideshowForm sf in _slideShowForms.ToList())
       {
-        sf.changeImage(_slideshowIEMap[sf].Current);
-        if (!_slideshowIEMap[sf].MoveNext())
+        if ((elapsed % _slideshowIntervalMap[sf]) == 0)
         {
-          _slideshowIEMap[sf] = _slideshowMap[sf].GetEnumerator();
+          sf.changeImage(_slideshowIEMap[sf].Current);
+          if (!_slideshowIEMap[sf].MoveNext())
+          {
+            _slideshowIEMap[sf] = _slideshowMap[sf].GetEnumerator();
+          }
         }
       }
     }
@@ -114,6 +120,7 @@ namespace SDnDSlideshow
       _lviToSlideshowFormMap[lvi] = slideForm;
       _SlideshowFormToLVIMap[slideForm] = lvi;
       slideShowListView.Items.Add(lvi);
+      _slideshowIntervalMap[slideForm] = (uint) intervalNumericUpDown.Value;
     }
 
     /// <summary>Stop all of the selected slideshows</summary>
@@ -153,5 +160,9 @@ namespace SDnDSlideshow
     private Dictionary<ListViewItem, SlideshowForm> _lviToSlideshowFormMap;
     // Map a SlideshowForm to its ListViewItem
     private Dictionary<SlideshowForm, ListViewItem> _SlideshowFormToLVIMap;
+    // Elapsed Seconds
+    private uint elapsed;
+    // Map SLideShow forms to the intervals
+    private Dictionary<SlideshowForm, uint> _slideshowIntervalMap;
   }
 }
