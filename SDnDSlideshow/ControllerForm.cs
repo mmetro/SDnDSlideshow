@@ -108,6 +108,10 @@ namespace SDnDSlideshow
     /// <summary>Stop all of the selected slideshows</summary>
     private void stopButton_Click(object sender, EventArgs e)
     {
+      if(slideShowListView.SelectedItems.Count == 0)
+      {
+        MessageBox.Show("Please select one or more slideshows from the list", "Select a slideshow");
+      }
       foreach (ListViewItem lvi in slideShowListView.SelectedItems)
       {
         _lviToSlideshowFormMap[lvi].Close();
@@ -116,6 +120,10 @@ namespace SDnDSlideshow
 
     private void lockButton_Click(object sender, EventArgs e)
     {
+      if (slideShowListView.SelectedItems.Count == 0)
+      {
+        MessageBox.Show("Please select one or more slideshows from the list", "Select a slideshow");
+      }
       foreach (ListViewItem lvi in slideShowListView.SelectedItems)
       {
         _slideshowMap[_lviToSlideshowFormMap[lvi]].lockSlideshow();
@@ -124,6 +132,10 @@ namespace SDnDSlideshow
 
     private void unlockButton_Click(object sender, EventArgs e)
     {
+      if (slideShowListView.SelectedItems.Count == 0)
+      {
+        MessageBox.Show("Please select one or more slideshows from the list", "Select a slideshow");
+      }
       foreach (ListViewItem lvi in slideShowListView.SelectedItems)
       {
         _slideshowMap[_lviToSlideshowFormMap[lvi]].unlockSlideshow();
