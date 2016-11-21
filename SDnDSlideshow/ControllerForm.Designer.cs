@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-      this.button1 = new System.Windows.Forms.Button();
-      this.screenComboBox1 = new System.Windows.Forms.ComboBox();
-      this.groupBox1 = new System.Windows.Forms.GroupBox();
       this.groupBox2 = new System.Windows.Forms.GroupBox();
       this.slideShowDirTextBox = new System.Windows.Forms.TextBox();
       this.browseButton = new System.Windows.Forms.Button();
@@ -43,46 +40,15 @@
       this.unlockButton = new System.Windows.Forms.Button();
       this.intervalNumericUpDown = new System.Windows.Forms.NumericUpDown();
       this.label2 = new System.Windows.Forms.Label();
-      this.groupBox1.SuspendLayout();
       this.groupBox2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.intervalNumericUpDown)).BeginInit();
       this.SuspendLayout();
-      // 
-      // button1
-      // 
-      this.button1.Location = new System.Drawing.Point(6, 19);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(104, 23);
-      this.button1.TabIndex = 0;
-      this.button1.Text = "Show Screen Info";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click_1);
-      // 
-      // screenComboBox1
-      // 
-      this.screenComboBox1.FormattingEnabled = true;
-      this.screenComboBox1.Location = new System.Drawing.Point(116, 21);
-      this.screenComboBox1.Name = "screenComboBox1";
-      this.screenComboBox1.Size = new System.Drawing.Size(121, 21);
-      this.screenComboBox1.TabIndex = 1;
-      this.screenComboBox1.Text = "Select a Screen";
-      // 
-      // groupBox1
-      // 
-      this.groupBox1.Controls.Add(this.button1);
-      this.groupBox1.Controls.Add(this.screenComboBox1);
-      this.groupBox1.Location = new System.Drawing.Point(12, 12);
-      this.groupBox1.Name = "groupBox1";
-      this.groupBox1.Size = new System.Drawing.Size(260, 62);
-      this.groupBox1.TabIndex = 2;
-      this.groupBox1.TabStop = false;
-      this.groupBox1.Text = "groupBox1";
       // 
       // groupBox2
       // 
       this.groupBox2.Controls.Add(this.slideShowDirTextBox);
       this.groupBox2.Controls.Add(this.browseButton);
-      this.groupBox2.Location = new System.Drawing.Point(12, 78);
+      this.groupBox2.Location = new System.Drawing.Point(12, 9);
       this.groupBox2.Name = "groupBox2";
       this.groupBox2.Size = new System.Drawing.Size(260, 54);
       this.groupBox2.TabIndex = 3;
@@ -110,7 +76,7 @@
       // 
       // startButton
       // 
-      this.startButton.Location = new System.Drawing.Point(19, 185);
+      this.startButton.Location = new System.Drawing.Point(19, 116);
       this.startButton.Name = "startButton";
       this.startButton.Size = new System.Drawing.Size(90, 23);
       this.startButton.TabIndex = 4;
@@ -167,7 +133,7 @@
       // 
       // intervalNumericUpDown
       // 
-      this.intervalNumericUpDown.Location = new System.Drawing.Point(19, 152);
+      this.intervalNumericUpDown.Location = new System.Drawing.Point(19, 83);
       this.intervalNumericUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -190,7 +156,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(74, 154);
+      this.label2.Location = new System.Drawing.Point(74, 85);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(93, 13);
       this.label2.TabIndex = 11;
@@ -210,10 +176,8 @@
       this.Controls.Add(this.slideShowListView);
       this.Controls.Add(this.startButton);
       this.Controls.Add(this.groupBox2);
-      this.Controls.Add(this.groupBox1);
       this.Name = "ControllerForm";
       this.Text = "Slideshow Controller";
-      this.groupBox1.ResumeLayout(false);
       this.groupBox2.ResumeLayout(false);
       this.groupBox2.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.intervalNumericUpDown)).EndInit();
@@ -223,10 +187,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox screenComboBox1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;

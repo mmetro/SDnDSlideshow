@@ -18,10 +18,6 @@ namespace SDnDSlideshow
     public ControllerForm()
     {
       InitializeComponent();
-      foreach (var screen in Screen.AllScreens)
-      {
-        screenComboBox1.Items.Add(screen.DeviceName);
-      }
       _slideShowForms = new HashSet<SlideshowForm>();
       _slideshows = new HashSet<Slideshow>();
       _slideshowMap = new Dictionary<SlideshowForm, Slideshow>();
@@ -35,19 +31,6 @@ namespace SDnDSlideshow
       System.Timers.Timer timer = new System.Timers.Timer(1000);
       timer.Elapsed += handleTimer;
       timer.Start();
-    }
-
-    /// <summary>display information about the selected screen</summary>
-    private void button1_Click_1(object sender, EventArgs e)
-    {
-      int selectedIndex = screenComboBox1.SelectedIndex;
-      if (selectedIndex < 0 || selectedIndex > Screen.AllScreens.Length)
-      {
-        MessageBox.Show("Please select a valid screen from the dropdown.", "Invalid Screen");
-        return;
-      }
-      Screen screen = Screen.AllScreens[selectedIndex];
-      MessageBox.Show("Name: " + screen.DeviceName + "\n Working area: " + screen.WorkingArea.ToString(), "Selected Screen Info");
     }
 
     /// <summary>Handler for when the browse button is clicked</summary>
