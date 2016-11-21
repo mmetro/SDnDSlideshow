@@ -128,15 +128,20 @@ namespace SDnDSlideshow
       }
     }
 
+    /// <summary>Handles the timer for updating the slideshow</summary>
     private void handleTimer(object source, ElapsedEventArgs e)
     {
       if (!isLocked)
         updateFilesFromDirectories();
     }
 
+    /// <summary>The set of all files contained in the slideshow</summary>
     private HashSet<String> _files;
+    /// <summary>The set of all directories to periodically check for new files in</summary>
     private HashSet<String> _directories;
+    /// <summary>Periodically check for new files</summary>
     private System.Timers.Timer _timer;
+    /// <summary>The lock state of the slideshow</summary>
     private bool isLocked;
   }
 }

@@ -94,9 +94,13 @@ namespace SDnDSlideshow
       }
     }
 
+    /// <summary>The image displayed by the slideshow form</summary>
     private Image _image;
+    /// <summary>The filepath of the image displayed by the slideshow form</summary>
     private String _imagePath;
+    /// <summary>Reference to the slideshow form's model</summary>
     private Slideshow _slideshow;
+    /// <summary>Reference to the slideshow form's controller</summary>
     private ControllerForm _controller;
   }
 }

@@ -121,6 +121,7 @@ namespace SDnDSlideshow
       }
     }
 
+    /// <summary>Lock all of the selected slideshows</summary>
     private void lockButton_Click(object sender, EventArgs e)
     {
       if (slideShowListView.SelectedItems.Count == 0)
@@ -133,6 +134,7 @@ namespace SDnDSlideshow
       }
     }
 
+    /// <summary>Unlock all of the selected slideshows</summary>
     private void unlockButton_Click(object sender, EventArgs e)
     {
       if (slideShowListView.SelectedItems.Count == 0)
@@ -145,21 +147,21 @@ namespace SDnDSlideshow
       }
     }
 
-    // Set of all slideshow models
+    /// <summary> Set of all slideshow models</summary>
     private HashSet<Slideshow> _slideshows;
-    // Set of all slideshow forms
+    /// <summary> Set of all slideshow forms</summary>
     private HashSet<SlideshowForm> _slideShowForms;
-    // Map a slideshow form to its slideshow model
+    /// <summary> Maps a slideshow form to its slideshow model</summary>
     private Dictionary<SlideshowForm, Slideshow> _slideshowMap;
-    // Map a slideshow form to an IEnumerator for its images' filepaths
+    /// <summary> Maps a slideshow form to an IEnumerator for its images' filepaths</summary>
     private Dictionary<SlideshowForm, IEnumerator<String>> _slideshowIEMap;
-    // Map a ListViewItem to its SlideshowForm
+    /// <summary> Maps a ListViewItem to its SlideshowForm</summary>
     private Dictionary<ListViewItem, SlideshowForm> _lviToSlideshowFormMap;
-    // Map a SlideshowForm to its ListViewItem
+    /// <summary>Maps a SlideshowForm to its ListViewItem</summary>
     private Dictionary<SlideshowForm, ListViewItem> _SlideshowFormToLVIMap;
-    // Elapsed Seconds
+    /// <summary>Elapsed seconds since program start</summary>
     private uint elapsed;
-    // Map SLideShow forms to the intervals
+    /// <summary>Map SlideshowForms to their update intervals</summary>
     private Dictionary<SlideshowForm, uint> _slideshowIntervalMap;
   }
 }
